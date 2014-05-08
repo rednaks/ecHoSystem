@@ -22,7 +22,7 @@ all:client server
 client:$(CLIENT_TARGET)
 	@echo "Compilation du client terminée"
 
-$(CLIENT_TARGET):$(CLIENT_OBJ) $(CLIENT_SRC_DIR)/client.c $(CLIENT_SRC_DIR)/client.h
+$(CLIENT_TARGET):$(CLIENT_OBJ) $(CLIENT_SRC_DIR)/main.c
 	$(CC) $(CLIENT_SRC_DIR)/main.c $(CLIENT_OBJ) -o $(CLIENT_TARGET)
 
 $(CLIENT_OBJ):$(CLIENT_OBJ_DIR) $(CLIENT_SRC_DIR)/client.h $(CLIENT_SRC_DIR)/client.c
