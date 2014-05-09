@@ -5,6 +5,7 @@
 typedef struct {
   int seuil;
   int moyenneUtilisation;
+  char ip[15];
 
 } ClientInfo;
 
