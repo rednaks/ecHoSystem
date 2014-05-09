@@ -3,7 +3,8 @@
 
 int main(int argc, char **argv) {
 
-  // TODO
+  int res = init_server(9999);
+  printf("Res = %d\n", res);
 
   return 0;
 }
