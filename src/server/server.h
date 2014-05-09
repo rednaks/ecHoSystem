@@ -17,6 +17,15 @@
 ClientInfo ClientRang[MAX_CONNECTION];
 
 
+/*
+  init_serve(portNum) :
+  Prépare le serveur pour l'acceptation des connexions.
+  Retourne :
+    sockfd : si tout va bien.
+    -1 : s'il y erreur lors de l'ouverture du socket.
+    PORT_BIND_ERR : si l'address est occupée.
+    LISTEN_ERR : s'il n'est pas possible d'écouter
+*/
 int init_server(int portNum);
 
 #endif
