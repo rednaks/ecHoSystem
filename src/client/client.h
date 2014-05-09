@@ -16,6 +16,7 @@ typedef struct {
 
 #define INVALID_SERVER_ERR -2
 #define CONNECTION_ERR -3
+#define SEND_ERROR -1
 
 /*
   se_connect(host, port) :
@@ -28,6 +29,17 @@ typedef struct {
 */
 
 int se_connecter(const char* host, int portNum);
+
+
+/*
+   envoyerMsg(message, sockfd) :
+   Envoie un message au serveur en utilisant un socket donné.
+   Retourne :
+    n : le nombre d'octets envoyés. 
+    SEND_ERROR s'il y a erreur.
+*/
+
+int envoyerMsg(const char* message, int sockfd);
 
 
 #endif

@@ -33,3 +33,12 @@ int se_connecter(const char* host, int portNum) {
 
   return sockfd;
 }
+
+
+int envoyerMsg(const char* message, int sockfd) {
+  int res =  write(sockfd, message, strlen(message));
+  if(res < 0)
+    return SEND_ERROR;
+
+  return res;
+}
