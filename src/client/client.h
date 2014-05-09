@@ -16,7 +16,7 @@ typedef struct {
 
 #define INVALID_SERVER_ERR -2
 #define CONNECTION_ERR -3
-#define SEND_ERROR -1
+#define SEND_ERROR -4
 
 /*
   se_connect(host, port) :
