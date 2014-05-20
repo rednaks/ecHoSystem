@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
   client_len = sizeof(client_addr);
 
   client_sockfd = accept(res, (struct sockaddr*) &client_addr, &client_len);
-  int n = recevoirMsg(client_sockfd, message, taille);
+  int n = receiveMsg(client_sockfd, message, taille);
 
   if(n < 0){
     perror("RES");

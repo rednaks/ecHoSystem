@@ -9,8 +9,8 @@
 
 
 typedef struct {
-  int seuil;
-  int nbrUtilisations;
+  int threshold;
+  int useNumber;
 } Client;
 
 
@@ -19,27 +19,27 @@ typedef struct {
 #define SEND_ERROR -4
 
 /*
-  se_connect(host, port) :
-  Permet de se connecter à un serveur (host) via le port (portNum).
-  Retourne
-    sockfd en cas de succès,
-    -1 s'il y a erreur lors de l'ouverture du socket,
-    INVALID_SERVER_ERR si |host| n'est pas valide.
-    CONNECTION_ERR s'il y a erreur lors de l'établissement de connexion.
+  Connect(host, port) :
+  Allow to connect to a server (host) via a port number (portNum).
+  Returns :
+    sockfd if success
+    -1 in case of an error while opening the socket.
+    INVALID_SERVER_ERR if |host| is not a valid address.
+    CONNECTION_ERR error in connection.
 */
 
-int se_connecter(const char* host, int portNum);
+int Connect(const char* host, int portNum);
 
 
 /*
-   envoyerMsg(message, sockfd) :
-   Envoie un message au serveur en utilisant un socket donné.
-   Retourne :
-    n : le nombre d'octets envoyés. 
-    SEND_ERROR s'il y a erreur.
+   sendMsg(message, sockfd) :
+   Send a message to the server using a given socket.
+   Returns :
+    n : The number of sent bytes.
+    SEND_ERROR if error..
 */
 
-int envoyerMsg(const char* message, int sockfd);
+int sendMsg(const char* message, int sockfd);
 
 
 #endif

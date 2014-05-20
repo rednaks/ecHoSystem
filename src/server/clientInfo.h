@@ -3,8 +3,8 @@
 
 
 typedef struct {
-  int seuil;
-  int moyenneUtilisation;
+  int threshold;
+  int useAverage;
   char ip[15];
 
 } ClientInfo;

@@ -1,7 +1,7 @@
 #include "client.h"
 
 
-int se_connecter(const char* host, int portNum) {
+int Connect(const char* host, int portNum) {
   int sockfd;
 
   struct sockaddr_in server_addr;
@@ -10,13 +10,13 @@ int se_connecter(const char* host, int portNum) {
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
   if(sockfd < 0)
-    return sockfd; // Erreur lors de l'ouverture du socket
+    return sockfd; // -1 : error while opening the socket.
 
 
   server = gethostbyname(host);
 
   if(server == NULL)
-    return INVALID_SERVER_ERR; // le nom d'hôte est incorrecte
+    return INVALID_SERVER_ERR; // The host is not valid.
 
   bzero((char *) &server_addr, sizeof(server_addr));
   server_addr.sin_family = AF_INET;
@@ -35,7 +35,7 @@ int se_connecter(const char* host, int portNum) {
 }
 
 
-int envoyerMsg(const char* message, int sockfd) {
+int sendMsg(const char* message, int sockfd) {
   int res =  write(sockfd, message, strlen(message));
   if(res < 0)
     return SEND_ERROR;

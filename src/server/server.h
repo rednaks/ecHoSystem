@@ -20,21 +20,23 @@ ClientInfo ClientRang[MAX_CONNECTION];
 
 /*
   init_serve(portNum) :
-  Prépare le serveur pour l'acceptation des connexions.
-  Retourne :
-    sockfd : si tout va bien.
-    -1 : s'il y erreur lors de l'ouverture du socket.
-    PORT_BIND_ERR : si l'address est occupée.
-    LISTEN_ERR : s'il n'est pas possible d'écouter
+  Will prepare the server to accept connections.
+  Returns :
+    sockfd : if everything is okey.
+    -1 : if error on opening the socket.
+    PORT_BIND_ERR : if the address is busy.
+    LISTEN_ERR : not able to listen.
 */
 int init_server(int portNum);
 
 /*
-  recevoirMsg(sockfd, message, taille):
-    Le message reçu sera mis dans la variable |message|.
-    n : le nombre d'octets reçus
-    RECV_ERR : s'il y a eu une erreur lors de la reception.
+  receiveMsg(sockfd, message, taille):
+    The received message will be placed in |message| variable.
+    Returns :
+    n : The number of received bytes.
+    RECV_ERR : if an error happens on message reception.
 */
-int recevoirMsg(int sockfd, char* message, int size);
+
+int receiveMsg(int sockfd, char* message, int size);
 
 #endif
