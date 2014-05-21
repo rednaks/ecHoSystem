@@ -10,6 +10,7 @@
 
 
 typedef struct {
+  int id;
   int threshold;
   int useNumber;
 } Client;
@@ -30,6 +31,20 @@ typedef struct {
 
 int Connect(const char* host, int portNum);
 
-int sendUseRequestAndWaitResponse(int sockfd);
+/* 
+   A given Client will send a USE_REQ.
+   And will wait for the server's response.
+   Returns : 
+    USE_OK : if the server allowed the client to start.
+    USE_NO : if not.
+
+*/
+int sendUseRequestAndWaitResponse(int sockfd, const Client aClient);
+
+/*
+   A given Client will send it's number of use.
+   Always returns 0;
+*/
+int sendInfo(int sockfd, const Client aClient);
 
 #endif
