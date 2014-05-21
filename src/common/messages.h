@@ -57,4 +57,13 @@ typedef struct {
 
 void parseMessage(char *aRawMessage, Message *aParesedMessage);
 
+/*
+   composeMessage will compose and return a message frame (as a string )
+   that will be send over network.
+
+*/
+
+char* composeMessage(const Message aMessage);
+
+
 #endif
