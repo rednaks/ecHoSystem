@@ -5,7 +5,7 @@
 typedef struct {
   int threshold;
   int useAverage;
-  char ip[15];
+  int id;
 
 } ClientInfo;
 
