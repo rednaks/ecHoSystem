@@ -41,3 +41,16 @@ char* composeMessage(const Message aMessage) {
   return rawMessage;
 }
 
+
+void receiveMsg(int sockfd, Message* aMessage) {
+  char buffer[MSG_MAX_SIZE];
+  bzero(buffer, MSG_MAX_SIZE);
+  int res = read(sockfd, buffer, MSG_MAX_SIZE);
+
+  parseMessage(buffer, aMessage);
+}
+
+void sendMsg(int sockfd, const Message aMessage) {
+  char* buffer = composeMessage(aMessage);
+  int res = write(sockfd, buffer, MSG_MAX_SIZE);
+}

@@ -30,15 +30,3 @@ int init_server(int portNum) {
   return sockfd;
 }
 
-int receiveMsg(int sockfd, char* message, int size) {
-  bzero(message, size);
-
-  int res = read(sockfd, message, size);
-
-  if(res < 0) {
-    return RECV_ERR;
-  }
-
-  return res;
-}
-

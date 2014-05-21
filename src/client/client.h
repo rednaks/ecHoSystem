@@ -6,6 +6,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <string.h>
+#include "../common/messages.h"
 
 
 typedef struct {
@@ -16,7 +17,6 @@ typedef struct {
 
 #define INVALID_SERVER_ERR -2
 #define CONNECTION_ERR -3
-#define SEND_ERROR -4
 
 /*
   Connect(host, port) :
@@ -30,16 +30,6 @@ typedef struct {
 
 int Connect(const char* host, int portNum);
 
-
-/*
-   sendMsg(message, sockfd) :
-   Send a message to the server using a given socket.
-   Returns :
-    n : The number of sent bytes.
-    SEND_ERROR if error..
-*/
-
-int sendMsg(const char* message, int sockfd);
-
+int sendUseRequestAndWaitResponse(int sockfd);
 
 #endif

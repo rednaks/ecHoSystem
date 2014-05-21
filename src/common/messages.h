@@ -5,6 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+
+
 
 /*
    This file contains the definition of the messages between the client
@@ -25,6 +31,9 @@
    a seperator to identify the fields, a ":" for example.
 
 */
+
+
+#define MSG_MAX_SIZE 4
 
 typedef struct {
   int client_id;
@@ -71,6 +80,13 @@ void parseMessage(char *aRawMessage, Message *aParesedMessage);
 */
 
 char* composeMessage(const Message aMessage);
+
+
+void receiveMsg(int sockfd, Message* aMessage);
+
+
+
+void sendMsg(int sockfd, const Message aMessage);
 
 
 #endif

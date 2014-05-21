@@ -3,6 +3,7 @@
 
 int Connect(const char* host, int portNum) {
   int sockfd;
+  int client_id = 1;
 
   struct sockaddr_in server_addr;
   struct hostent *server;
@@ -35,10 +36,11 @@ int Connect(const char* host, int portNum) {
 }
 
 
-int sendMsg(const char* message, int sockfd) {
-  int res =  write(sockfd, message, strlen(message));
-  if(res < 0)
-    return SEND_ERROR;
-
-  return res;
+int sendUseRequestAndWaitResponse(int sockfd) {
+  Message msg;
+  msg.client_id = 1; // TODO : have to be dynamic
+  msg.cmd = USE_CMD;
+  msg.arg = USE_REQ;
+  sendMsg(sockfd, msg);
+  return 0; // TODO : have to change this.
 }

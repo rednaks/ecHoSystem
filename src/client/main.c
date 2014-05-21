@@ -9,11 +9,12 @@ int main(int argc, char **argv) {
   int sockfd = Connect("localhost", 9999);
 
   if(sockfd >= 0) {
+    Message msg;
+    msg.client_id = 1;
+    msg.cmd = INFO_CMD;
+    msg.arg = 0;
+    sendMsg(sockfd, msg);
 
-    if(sendMsg("Hello ! ", sockfd) == SEND_ERROR) {
-
-      printf("Erreur Lors de l'envoie\n");
-    }
   } else {
     printf("Erreur : %d\n", sockfd);
   }
