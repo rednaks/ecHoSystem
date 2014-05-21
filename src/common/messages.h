@@ -49,6 +49,7 @@ typedef struct {
    the number of use from the client.
 
 */
+#define NO_ARGS       0x0
 #define INFO_CMD      0x1
 
 
