@@ -30,6 +30,11 @@ ClientInfo ClientRang[MAX_CONNECTION];
 */
 int init_server(int portNum);
 
+/*
+   Will send an information request to a given
+   client, this should be called whenever the
+   threashold reached.
+*/
 void sendInfoRequest(int sockfd, ClientInfo *aClient);
 
 #endif
