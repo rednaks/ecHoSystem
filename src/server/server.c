@@ -31,13 +31,29 @@ int init_server(int portNum) {
 }
 
 
+void sendFirstInfoRequest(int sockfd, ClientInfo *aClient) {
+  Message msg;
+  msg.client_id = NO_ARGS;
+  msg.cmd = INFO_CMD;
+  msg.arg = INFO_THRESHOLD;
+  
+  sendMsg(sockfd, msg);
+
+  receiveMsg(sockfd, &msg);
+
+  if(msg.cmd == INFO_CMD) {
+    aClient->id = msg.client_id;
+    aClient->threshold = msg.arg;
+  }
+}
+
 void sendInfoRequestAnWaitReponse(int sockfd, ClientInfo *aClient) {
   Message msg;
   msg.client_id = aClient->id;
   msg.cmd = INFO_CMD;
-  msg.arg = NO_ARGS;
+  msg.arg = INFO_THRESHOLD;
 
-  send(sockfd, msg);
+  sendMsg(sockfd, msg);
 
   // We wait for the info from client:
   receiveMsg(sockfd, &msg);

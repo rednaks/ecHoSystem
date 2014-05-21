@@ -31,9 +31,16 @@ ClientInfo ClientRang[MAX_CONNECTION];
 int init_server(int portNum);
 
 /*
+   Request sent when the client connect for the
+   first time.
+*/
+
+void sendFirstInfoRequest(int sockfd, ClientInfo *aClient);
+
+/*
    Will send an information request to a given
    client, this should be called whenever the
-   threashold reached.
+   threshold reached by setting the arg as INFO_THRESHOLD
 */
 void sendInfoRequest(int sockfd, ClientInfo *aClient);
 

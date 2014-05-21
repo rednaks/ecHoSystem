@@ -44,13 +44,18 @@ typedef struct {
 /*
    The INFO_CMD is sent when a client will provide informations to the server,
    such as the number of use in a period.
-   The only allowed argument is the number if use for the client.
-   If the server sends an INFO_CMD to a client, this mean that he's requesting
+   Args :
+   The first time, the server will ask for the threshold,
+   The he will always ask for the number of use of the client.
    the number of use from the client.
 
 */
-#define NO_ARGS       0x0
-#define INFO_CMD      0x1
+#define NO_ARGS         0x0
+
+#define INFO_CMD        0x1
+
+#define INFO_THRESHOLD  0x1
+#define INFO_USE_NUM    0x2
 
 
 
@@ -58,11 +63,11 @@ typedef struct {
    The USE_CMD is sent by the client if he wants to start working.
    There are the different args that USE can have.
 */
-#define USE_CMD       0x2
+#define USE_CMD         0x2
 
-#define USE_REQ       0x1
-#define USE_OK        0x2
-#define USE_NO        0x3
+#define USE_REQ         0x1
+#define USE_OK          0x2
+#define USE_NO          0x3
 
 
 
