@@ -35,7 +35,7 @@ void parseMessage(char *aRawMessage, Message *aParsedMessage){
 
 char* composeMessage(const Message aMessage) {
 
-  char *rawMessage;
+  char *rawMessage = malloc(sizeof(char*)*4);
   sprintf(rawMessage, "%02d%d%d", aMessage.client_id, aMessage.cmd, aMessage.arg);
 
   return rawMessage;
