@@ -48,9 +48,9 @@ typedef struct {
 */
 #define USE_CMD       0x2
 
-#define USE_REQ       0x3
-#define USE_OK        0x4
-#define USE_NO        0x5
+#define USE_REQ       0x1
+#define USE_OK        0x2
+#define USE_NO        0x3
 
 
 
