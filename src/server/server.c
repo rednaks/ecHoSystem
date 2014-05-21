@@ -30,3 +30,19 @@ int init_server(int portNum) {
   return sockfd;
 }
 
+
+void sendInfoRequestAnWaitReponse(int sockfd, ClientInfo *aClient) {
+  Message msg;
+  msg.client_id = aClient->id;
+  msg.cmd = INFO_CMD;
+  msg.arg = NO_ARGS;
+
+  send(sockfd, msg);
+
+  // We wait for the info from client:
+  receiveMsg(sockfd, &msg);
+  if(msg.cmd == INFO_CMD) {
+    aClient->useAverage += msg.arg;
+    aClient->useAverage /= 2; // We calculate the new avg
+  }
+}

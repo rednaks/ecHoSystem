@@ -30,4 +30,6 @@ ClientInfo ClientRang[MAX_CONNECTION];
 */
 int init_server(int portNum);
 
+void sendInfoRequest(int sockfd, ClientInfo *aClient);
+
 #endif
