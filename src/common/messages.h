@@ -1,6 +1,8 @@
 #ifndef MESSAGES_H
 #define MESSAGES_H
 
+#include <string.h>
+
 
 /*
    This file contains the definition of the messages between the client
@@ -15,7 +17,10 @@
    |CLIENT_ID|CMD|ARG |
    +---------+---+----+
 
-   The different fileds are seperated by a ":"
+   At the moment, each filed will be encoded into one byte,
+   except the CLIENT_ID which is on two bytes.
+   If we want to expend the system, we can use 
+   a seperator to identify the fields, a ":" for example.
 
 */
 
