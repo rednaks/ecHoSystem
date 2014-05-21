@@ -33,4 +33,11 @@ void parseMessage(char *aRawMessage, Message *aParsedMessage){
   aParsedMessage->arg = arg;
 }
 
+char* composeMessage(const Message aMessage) {
+
+  char *rawMessage;
+  sprintf(rawMessage, "%02d%d%d", aMessage.client_id, aMessage.cmd, aMessage.arg);
+
+  return rawMessage;
+}
 

@@ -1,6 +1,8 @@
 #ifndef MESSAGES_H
 #define MESSAGES_H
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 
