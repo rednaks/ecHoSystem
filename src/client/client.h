@@ -45,7 +45,7 @@ int sendUseRequestAndWaitResponse(int sockfd, const Client aClient);
    Will send it's threshold.
 */
 
-int sendThresholdInfo(int sockfd, const Client aClient);
+void sendThresholdInfo(int sockfd, const Client aClient);
 /*
    A given Client will send it's number of use.
    Always returns 0;
