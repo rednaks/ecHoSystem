@@ -41,7 +41,7 @@ server:$(SERVER_TARGET)
 	@echo "Compilation du serveur terminée"
 
 $(SERVER_TARGET):$(MESSAGES_OBJ) $(SERVER_OBJ) $(SERVER_SRC_DIR)/main.c
-	$(CC) $(SERVER_SRC_DIR)/main.c $(MESSAGES_OBJ) $(SERVER_OBJ) -o $(SERVER_TARGET)
+	$(CC) $(SERVER_SRC_DIR)/main.c $(MESSAGES_OBJ) $(SERVER_OBJ) -o $(SERVER_TARGET) -pthread
 
 $(SERVER_OBJ):$(SERVER_OBJ_DIR) $(SERVER_SRC_DIR)/server.c $(SERVER_SRC_DIR)/server.h $(SERVER_SRC_DIR)/clientInfo.h
 	$(CC) -c $(SERVER_SRC_DIR)/server.c -o $(SERVER_OBJ)
