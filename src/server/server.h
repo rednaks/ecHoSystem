@@ -20,6 +20,12 @@
 ClientInfo ClientRang[MAX_CONNECTION];
 
 
+typedef struct {
+  int clientRangIndex;
+  int remainingUse;
+} Comportement;
+
+
 /*
   init_serve(portNum) :
   Will prepare the server to accept connections.
