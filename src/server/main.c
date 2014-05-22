@@ -4,7 +4,6 @@
 
 
 
-int ClientRangCurrentIndex = 0;
 
 
 void* clientHandler(void* aClientfd) {
@@ -18,18 +17,36 @@ void* clientHandler(void* aClientfd) {
   ClientRang[index] = client; // Samething here.
 
   printf("Client: %d, Threshold : %d, Avg : %d\n", client.id, client.threshold, client.useAverage);
+  comportementalStudy(index);
 
+  while(1) {
+    Message msg;
+    receiveMsg(sockfd, &msg);
+    if(msg.cmd == USE_CMD){
+      if(msg.arg == USE_REQ) {
+        // We check if the client is allowed to run.
+        if(ResultCom[index].remainingUse-- > 0){
+          msg.arg = USE_OK;
+        }
+        else{
+          msg.arg = USE_NO;
+        }
+        sendMsg(sockfd, msg);
+      }
+    }
 
-
+    continue; // Nothing todo, waiting for the next request.
+  }
 }
 
 int main(int argc, char **argv) {
 
   int res = init_server(9999);
   pthread_t connections[MAX_CONNECTION];
-  int connectedClients = 0;
   int clients_sockfd[MAX_CONNECTION] = {0};
 
+  connectedClients = 0;
+  ClientRangCurrentIndex = 0;
 
   int client_len;
   int client_addr;
