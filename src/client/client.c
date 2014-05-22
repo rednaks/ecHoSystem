@@ -37,7 +37,7 @@ int Connect(const char* host, int portNum) {
 
 int sendUseRequestAndWaitResponse(int sockfd, const Client aClient) {
   Message msg;
-  msg.client_id = aClient.id; // TODO : have to be dynamic
+  msg.client_id = aClient.id; 
   msg.cmd = USE_CMD;
   msg.arg = USE_REQ;
   sendMsg(sockfd, msg);
@@ -50,12 +50,45 @@ int sendUseRequestAndWaitResponse(int sockfd, const Client aClient) {
 
 }
 
+void sendThresholdInfo(int sockfd, const Client aClient) {
+  Message msg;
+  msg.client_id = aClient.id;
+  msg.cmd = INFO_CMD;
+  msg.arg = aClient.threshold;
+
+  sendMsg(sockfd, msg);
+}
+
 int sendInfo(int sockfd, const Client aClient) {
   Message msg;
   msg.client_id = aClient.id;
   msg.cmd = INFO_CMD;
   msg.arg = aClient.useNumber;
 
+  sendMsg(sockfd, msg);
+
   return 0;
 }
+
+void startLearningProcess(int sockfd, const Client aClient) {
+  Message msg;
+
+  while(1) {
+    receiveMsg(sockfd, &msg);
+    if(msg.cmd == INFO_CMD) {
+
+      if(msg.arg == INFO_THRESHOLD) {
+
+        sendThresholdInfo(sockfd, aClient);
+
+      } else if(msg.arg == INFO_USE_NUM) {
+
+        sendInfo(sockfd, aClient);
+        break; //The learning is over.
+      }
+    }
+  }
+
+}
+
 

@@ -42,9 +42,18 @@ int Connect(const char* host, int portNum);
 int sendUseRequestAndWaitResponse(int sockfd, const Client aClient);
 
 /*
+   Will send it's threshold.
+*/
+
+int sendThresholdInfo(int sockfd, const Client aClient);
+/*
    A given Client will send it's number of use.
    Always returns 0;
 */
 int sendInfo(int sockfd, const Client aClient);
 
+/*
+   Will start the learning process
+   */
+void startLearningProcess(int sockfd, const Client aClient);
 #endif
