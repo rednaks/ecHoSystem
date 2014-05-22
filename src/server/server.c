@@ -62,3 +62,12 @@ void sendInfoRequestAnWaitReponse(int sockfd, ClientInfo *aClient) {
     aClient->useAverage /= 2; // We calculate the new avg
   }
 }
+
+void startLearningProcess(int sockfd, ClientInfo *aClient) {
+  Message msg;
+
+  sendFirstInfoRequest(sockfd, aClient);
+
+  sendInfoRequestAnWaitReponse(sockfd, aClient);
+
+}

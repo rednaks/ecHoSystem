@@ -44,4 +44,9 @@ void sendFirstInfoRequest(int sockfd, ClientInfo *aClient);
 */
 void sendInfoRequest(int sockfd, ClientInfo *aClient);
 
+/*
+   Will start the learning process on the server for each client.
+*/
+void startLearningProcess(int sockfd, ClientInfo *aClient);
+
 #endif
