@@ -41,10 +41,27 @@ int main(int argc, char **argv) {
       char input;
       scanf(" %c", &input);
       printf("Inp %c\n",input);
-      if(input == 'y' && isLearning)
-      {
-        me.useNumber++;
+      if(input == 'y')  {
+        if(isLearning){
+          me.useNumber++;
+        }else if(!isLearning){
+          Message msg;
+          msg.client_id = me.id;
+          msg.cmd = USE_CMD;
+          msg.arg = USE_REQ;
+          sendMsg(sockfd, msg);
+
+          receiveMsg(sockfd, &msg);
+          if(msg.cmd == USE_CMD){
+            if(msg.arg == USE_OK){
+              printf("I'm allowed to run :)\n");
+            }else if(msg.arg == USE_NO) {
+              printf("I'm not allowed to run :(\n");
+            }
+          }
+        }
       }
+
     }
   } else {
     printf("Erreur : %d\n", sockfd);
