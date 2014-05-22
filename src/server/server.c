@@ -67,6 +67,11 @@ void startLearningProcess(int sockfd, ClientInfo *aClient) {
 
   sendFirstInfoRequest(sockfd, aClient);
 
+  // We wait until the threshold is reached
+  sleep(aClient->threshold);
+
+
+  // Then we ask for the number of use
   sendInfoRequestAnWaitReponse(sockfd, aClient);
 
 }
