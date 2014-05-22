@@ -44,6 +44,7 @@ void sendFirstInfoRequest(int sockfd, ClientInfo *aClient) {
   if(msg.cmd == INFO_CMD) {
     aClient->id = msg.client_id;
     aClient->threshold = msg.arg;
+    aClient->useAverage = 0;
   }
 }
 
@@ -51,20 +52,18 @@ void sendInfoRequestAnWaitReponse(int sockfd, ClientInfo *aClient) {
   Message msg;
   msg.client_id = aClient->id;
   msg.cmd = INFO_CMD;
-  msg.arg = INFO_THRESHOLD;
+  msg.arg = INFO_USE_NUM;
 
   sendMsg(sockfd, msg);
 
   // We wait for the info from client:
   receiveMsg(sockfd, &msg);
   if(msg.cmd == INFO_CMD) {
-    aClient->useAverage += msg.arg;
-    aClient->useAverage /= 2; // We calculate the new avg
+    aClient->useAverage = msg.arg;
   }
 }
 
 void startLearningProcess(int sockfd, ClientInfo *aClient) {
-  Message msg;
 
   sendFirstInfoRequest(sockfd, aClient);
 
