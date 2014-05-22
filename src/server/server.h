@@ -19,12 +19,16 @@
 
 ClientInfo ClientRang[MAX_CONNECTION];
 
+int connectedClients;
+int ClientRangCurrentIndex;
 
 typedef struct {
   int clientRangIndex;
   int remainingUse;
 } Comportement;
 
+
+Comportement ResultCom[MAX_CONNECTION];
 
 /*
   init_serve(portNum) :

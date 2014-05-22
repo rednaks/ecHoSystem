@@ -75,3 +75,13 @@ void startLearningProcess(int sockfd, ClientInfo *aClient) {
   sendInfoRequestAnWaitReponse(sockfd, aClient);
 
 }
+
+void comportementalStudy(int ClientIndex) {
+
+    Comportement c;
+    c.clientRangIndex = ClientIndex;
+    c.remainingUse = ClientRang[c.clientRangIndex].useAverage;
+
+    ResultCom[ClientIndex] = c;
+}
+
