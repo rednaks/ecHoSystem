@@ -4,6 +4,14 @@
 
 
 
+void *resetRoutine(void* params) {
+  int index = *((int*)params);
+  int threshold = ClientRang[index].threshold;
+  while(1){
+    sleep(threshold);
+    ResultCom[index].remainingUse = ClientRang[index].useAverage;
+  }
+}
 
 
 void* clientHandler(void* aClientfd) {
@@ -18,6 +26,8 @@ void* clientHandler(void* aClientfd) {
 
   printf("Client: %d, Threshold : %d, Avg : %d\n", client.id, client.threshold, client.useAverage);
   comportementalStudy(index);
+  pthread_t th;
+  pthread_create(&th, NULL, resetRoutine, &index);
 
   while(1) {
     Message msg;
