@@ -25,15 +25,17 @@
    |CLIENT_ID|CMD|ARG |
    +---------+---+----+
 
-   At the moment, each filed will be encoded into one byte,
-   except the CLIENT_ID which is on two bytes.
+   Encoding:
+   CLIENT_ID : 2 bytes
+   CMD : 1 byte
+   ARG : 2 bytes
    If we want to expend the system, we can use 
    a seperator to identify the fields, a ":" for example.
 
 */
 
 
-#define MSG_MAX_SIZE 4
+#define MSG_MAX_SIZE 5
 
 typedef struct {
   int client_id;

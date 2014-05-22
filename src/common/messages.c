@@ -25,7 +25,7 @@ void parseMessage(char *aRawMessage, Message *aParsedMessage){
 
   // Extracting the argument
 
-  char raw_arg[] = {aRawMessage[3], '\0'};
+  char raw_arg[] = {aRawMessage[3], aRawMessage[4], '\0'};
   int arg = atoi(raw_arg);
 
   aParsedMessage->client_id = client_id;
@@ -35,8 +35,8 @@ void parseMessage(char *aRawMessage, Message *aParsedMessage){
 
 char* composeMessage(const Message aMessage) {
 
-  char *rawMessage = malloc(sizeof(char*)*4);
-  sprintf(rawMessage, "%02d%d%d", aMessage.client_id, aMessage.cmd, aMessage.arg);
+  char *rawMessage = malloc(sizeof(char*)* MSG_MAX_SIZE);
+  sprintf(rawMessage, "%02d%d%02d", aMessage.client_id, aMessage.cmd, aMessage.arg);
 
   return rawMessage;
 }
