@@ -55,5 +55,5 @@ int sendInfo(int sockfd, const Client aClient);
 /*
    Will start the learning process
    */
-void startLearningProcess(int sockfd, const Client aClient);
+void startLearningProcess(int sockfd, const Client* aClient);
 #endif

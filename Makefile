@@ -28,7 +28,7 @@ client:$(CLIENT_TARGET)
 	@echo "Compilation du client terminée"
 
 $(CLIENT_TARGET):$(MESSAGES_OBJ) $(CLIENT_OBJ) $(CLIENT_SRC_DIR)/main.c
-	$(CC) $(CLIENT_SRC_DIR)/main.c $(MESSAGES_OBJ) $(CLIENT_OBJ) -o $(CLIENT_TARGET)
+	$(CC) $(CLIENT_SRC_DIR)/main.c $(MESSAGES_OBJ) $(CLIENT_OBJ) -o $(CLIENT_TARGET) -pthread
 
 $(CLIENT_OBJ):$(CLIENT_OBJ_DIR) $(CLIENT_SRC_DIR)/client.h $(CLIENT_SRC_DIR)/client.c
 	$(CC) -c $(CLIENT_SRC_DIR)/client.c -o $(CLIENT_OBJ)

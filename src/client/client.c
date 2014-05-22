@@ -70,7 +70,7 @@ int sendInfo(int sockfd, const Client aClient) {
   return 0;
 }
 
-void startLearningProcess(int sockfd, const Client aClient) {
+void startLearningProcess(int sockfd, const Client* aClient) {
   Message msg;
 
   while(1) {
@@ -79,11 +79,11 @@ void startLearningProcess(int sockfd, const Client aClient) {
 
       if(msg.arg == INFO_THRESHOLD) {
 
-        sendThresholdInfo(sockfd, aClient);
+        sendThresholdInfo(sockfd, *aClient);
 
       } else if(msg.arg == INFO_USE_NUM) {
 
-        sendInfo(sockfd, aClient);
+        sendInfo(sockfd, *aClient);
         break; //The learning is over.
       }
     }
