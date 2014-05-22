@@ -3,13 +3,23 @@
 #include <pthread.h>
 
 
+
+int ClientRangCurrentIndex = 0;
+
+
 void* clientHandler(void* aClientfd) {
   int sockfd = *((int *)aClientfd);
+  int index = 0;
   ClientInfo client;
-
   startLearningProcess(sockfd, &client);
+  // The threashol reached, we add the client to ClientRang
+  // FIXME : Add mutex here.
+  index = ClientRangCurrentIndex++;  // Should be a critic resource.
+  ClientRang[index] = client; // Samething here.
 
   printf("Client: %d, Threshold : %d, Avg : %d\n", client.id, client.threshold, client.useAverage);
+
+
 
 }
 
