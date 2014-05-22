@@ -6,11 +6,8 @@
 void* clientHandler(void* aClientfd) {
   int sockfd = *((int *)aClientfd);
   ClientInfo client;
-  sendFirstInfoRequest(sockfd, &client);
 
-  printf("Client: %d, Threshold : %d, Avg : %d\n", client.id, client.threshold, client.useAverage);
-
-  sendInfoRequestAnWaitReponse(sockfd, &client);
+  startLearningProcess(sockfd, &client);
 
   printf("Client: %d, Threshold : %d, Avg : %d\n", client.id, client.threshold, client.useAverage);
 
@@ -21,6 +18,7 @@ int main(int argc, char **argv) {
   int res = init_server(9999);
   pthread_t connections[MAX_CONNECTION];
   int connectedClients = 0;
+  int clients_sockfd[MAX_CONNECTION] = {0};
 
 
   int client_len;
@@ -32,9 +30,9 @@ int main(int argc, char **argv) {
     if(connectedClients == MAX_CONNECTION) 
       continue; // We donc accept new clients anymore.
 
-    int client_sockfd = accept(res, (struct sockaddr*) &client_addr, &client_len);
+    clients_sockfd[connectedClients - 1] = accept(res, (struct sockaddr*) &client_addr, &client_len);
     pthread_create(connections + (connectedClients - 1), 
-        NULL, clientHandler, &client_sockfd);
+        NULL, clientHandler, &clients_sockfd[connectedClients -1]);
 
   }
 

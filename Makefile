@@ -1,4 +1,4 @@
-CC = clang
+CC = gcc -g
 
 SRC_DIR = src
 SERVER_SRC_DIR = $(SRC_DIR)/server
